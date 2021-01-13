@@ -1,34 +1,25 @@
-let sendButton = document.getElementById('send');
-let resetButton = document.getElementById('reset');
-let form = document.getElementById('form');
+$(document).ready(function(){
+    $("#form").submit(function(e){
+        e.preventDefault();
+    });
 
+    $("#send").click(function(){
+        var inputName = $("#name")[0].name
+        var valName = $("#name").val()
+        localStorage.setItem(inputName, valName);
 
-form.addEventListener('submit', function(e){
-    e.preventDefault();
-})
+        var inputEmail = $("#email")[0].name
+        var valEmail = $("#email").val()
+        localStorage.setItem(inputEmail, valEmail);
 
-resetButton.addEventListener('click', function(){
-    let name = document.getElementById('name');
-    let email = document.getElementById('email');
-    let message = document.getElementById('message');
+        var inputMessage = $("#message")[0].name
+        var valMessage = $("#message").val()
+        localStorage.setItem(inputMessage, valMessage);
+    });
 
-    name.value = '';
-    email.value = '';
-    message.value = '';
-})
-
-sendButton.addEventListener('click', function(e){
-    let name = document.getElementById('name');
-    let email = document.getElementById('email');
-    let message = document.getElementById('message');
-
-    name = name.value;
-    localStorage.setItem('name', name);
-    
-    email = email.value;
-    localStorage.setItem('email', email);
-
-    message = message.value;
-    localStorage.setItem('message', message);
-    
-})
+    $("#reset").click(function(){
+        localStorage.clear();
+        $('form :input').val('');
+    })
+  
+});
